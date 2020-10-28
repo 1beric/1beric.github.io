@@ -1,0 +1,233 @@
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+#name {
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 1.75rem;
+    transition: all 1s ease;
+    user-select: none;
+}
+
+#name:hover {
+    font-size: 2rem;
+}
+
+header {
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+    top: 0px;
+    background-image: url("../images/marble.jpg");
+}
+
+nav {
+    min-height: 10vh;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+nav h1 {
+    flex: 1;
+    font-size: 1.5rem;
+    font-family: sans-serif;
+}
+
+nav ul {
+    flex: 2;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    font-family: sans-serif;
+}
+
+nav div {
+    flex: 3;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+nav a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section h2 {
+    font-size: 5rem;
+    padding: 1rem 0;
+    font-family: sans-serif;
+    font-weight: 100;
+    color: black;
+}
+
+.s1 {
+    background-image: url("../images/plant-background.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.s1 p {
+    position: absolute; 
+    bottom: 30vh;
+    background: linear-gradient(to top right, #0e1a3ac0, #470e0ec0);
+    color: white;
+    padding: 1vw;
+    font-size: 3rem;
+    width: 70vw;
+    text-align: center;
+}
+
+#large-name {
+    position: absolute; 
+    top: 15vh;
+    border-bottom: none;
+    font-size: 6vw;
+    letter-spacing: 1.5vw;
+    translate: transformY(10rem);
+    transition: all 1s ease;
+}
+
+#large-name:hover {
+    letter-spacing: .2vw;
+}
+
+#large-name span.offset {
+    user-select: none;
+}
+
+#large-name:hover span.offset {
+    transform: translateY(0) !important;
+}
+
+.s2 {
+    background-image: url("../images/web-background.png");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: center;
+}
+
+#gallery-label {
+    position: absolute;
+    /* background: linear-gradient(to top right, #444, black); */
+    top: 15vh;
+    left: 10vw;
+    user-select: none;
+    width: 80vw;
+    letter-spacing: 4vw;
+    transition: all 1s ease;
+}
+
+#gallery-label:hover {
+    letter-spacing: 1vw;
+}
+
+.s3 {
+    background: linear-gradient(to bottom, white, #470e0e);
+    position: relative;
+    text-align: center;
+}
+
+.s3 h2 {
+    position: absolute;
+    top: 15vh;
+    left: 10vw;
+    width: 80vw;
+    letter-spacing: 4vw;
+    transition: all 1s ease;
+}
+
+.s3 h2:hover {
+    letter-spacing: 1vw;
+}
+
+#bubble {
+    position: absolute;
+    z-index: -2;
+    transition: all 0.5s ease;
+}
+
+.scrollmenu {
+    position: absolute;
+    display: block;
+    top: 25vh;
+    left: 10vw;
+    height: 80vw;
+    width: 60vh;
+    overflow-y: auto;
+    transform: rotate(-90deg) translateY(-60vh);
+    transform-origin: right top;
+}
+
+.scrollmenu img {
+    object-fit: cover;
+    z-index: 5;
+    height: 50vh;
+    width: 50vh;
+    margin: 0.5rem;
+    transform: rotate(90deg) translateX(50vh);
+    transform-origin: right top;
+    transition: height 0.5s ease, width 0.5s ease, transform 0.5s ease;
+}
+
+.scrollmenu img:hover {
+    height: 55vh;
+    width: 55vh;
+    transform: rotate(90deg) translateX(55vh);
+}
+
+#img-view {
+    margin-top: 10vh;
+    height: 80vh;
+    width: 100vw;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 0rem;
+}

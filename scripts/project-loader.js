@@ -4,6 +4,7 @@ var projects = [
 	["./images/gallery/milano-couch.png", "/projects/c--", "3D Modeling"],
 	["./images/gallery/placeholder.png", "/projects/c--", "Rust Project"],
 	["./images/gallery/placeholder.png", "/projects/c--", "Graphics Study"],
+	["./images/gallery/placeholder.png", "/projects/c--", "Nano2020"],
 ];
 
 var wrapper = document.getElementById("projects-list");

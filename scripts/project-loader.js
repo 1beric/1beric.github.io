@@ -1,10 +1,10 @@
 var projects = [
-	["./images/gallery/code.png", "/projects/c--", "C-- Compiler"],
-	["./images/gallery/beryl.png", "/projects/c--", "Beryl Engine"],
+	["./images/gallery/code.png", "https://github.com/1beric/c--compiler_Rust", "C-- Compiler"],
+	["./images/gallery/beryl.png", "https://github.com/1beric/BerylEngine", "Beryl Engine"],
 	["./images/gallery/milano-couch.png", "/projects/c--", "3D Modeling"],
-	["./images/gallery/placeholder.png", "/projects/c--", "Rust Project"],
-	["./images/gallery/placeholder.png", "/projects/c--", "Graphics Study"],
-	["./images/gallery/placeholder.png", "/projects/c--", "Nano2020"],
+	["./images/gallery/placeholder.png", "https://github.com/1beric/insta", "Instagram Bot"],
+	["./images/gallery/placeholder.png", "https://github.com/1beric/mastermind", "Mastermind"],
+	["./images/gallery/placeholder.png", "https://osf.io/64m79/", "Nano2020"],
 ];
 
 var wrapper = document.getElementById("projects-list");

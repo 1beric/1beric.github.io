@@ -1,8 +1,8 @@
 {
   "main.css": "static/css/main.6611f32e.css",
   "main.css.map": "static/css/main.6611f32e.css.map",
-  "main.js": "static/js/main.db3be882.js",
-  "main.js.map": "static/js/main.db3be882.js.map",
-  "static/media/crystal_2048.png": "static/media/crystal_2048.b3834bbc.png",
-  "static/media/profile.jpg": "static/media/profile.6b6e7b2e.jpg"
+  "main.js": "static/js/main.fe622f91.js",
+  "main.js.map": "static/js/main.fe622f91.js.map",
+  "static\\media\\crystal_2048.png": "static/media/crystal_2048.b3834bbc.png",
+  "static\\media\\profile.jpg": "static/media/profile.6b6e7b2e.jpg"
 }

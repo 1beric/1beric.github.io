@@ -1,98 +1,81 @@
-import React, { useCallback, useState } from 'react';
+import React from "react";
+import * as PropTypes from "prop-types";
 import {
-	Box,
-	Container,
-	AppBar,
-	Tabs,
-	Typography,
-	Tab,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
-import { Button } from '@material-ui/core';
-import { useSelector } from 'react-redux';
-
-import ApplicationMenu from './ApplicationMenu';
-import * as BodyContent from '../../body/constants/BodyContent';
-import HeaderMenuItem from './HeaderMenuItem';
-import * as selectors from '../../../store/selectors';
+  Box,
+  Button,
+  LinearProgress,
+  Paper,
+  Slider,
+  Tab,
+  Tabs,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import selectors from "../../../store/selectors";
+import HEADER_TYPES from "../util/headerTypes";
+import BODY_TYPES from "../../body/util/bodyTypes";
+import actions from "../../../store/actions";
 
 const Header = () => {
-	const bodyContent = useSelector(selectors.getBodyContent);
+  const theme = useTheme();
+  const reduxTheme = useSelector(selectors.getTheme);
+  const headerType = useSelector(selectors.getHeaderType);
 
-	const classes = useStyles();
+  const dispatch = useDispatch();
 
-	const listMenuItems = () => {
-		return BodyContent.values().map((name, i) => (
-			<HeaderMenuItem key={`menu_${i}`} name={name} />
-		));
-	};
+  const handleLogoClicked = () => {
+    dispatch(actions.goToHome());
+  };
 
-	return (
-		<React.Fragment>
-			<div className={classes.rootHidden} />
-			<div className={classes.rootFixed}>
-				<AppBar position='static' elevation={0} className={classes.bar}>
-					<p className={classes.logoName}>Brandon Erickson</p>
-					<Tabs
-						style={{ height: '70%' }}
-						variant='scrollable'
-						scrollButtons='on'
-						value={bodyContent}
-						aria-label='header'
-						TabScrollButtonProps={{
-							className: classes.barArrow,
-						}}
-					>
-						{/* <ApplicationMenu /> */}
-						{listMenuItems()}
-					</Tabs>
-				</AppBar>
-			</div>
-		</React.Fragment>
-	);
+  const renderDefault = () => (
+    <Box
+      sx={{
+        display: "flex",
+        gap: theme.spacing(2),
+        alignItems: "center",
+      }}
+    >
+      <Typography variant="h4" color="primary">
+        1BERIC
+      </Typography>
+      <Button variant="contained" href="https://github.com/1beric">
+        Github
+      </Button>
+    </Box>
+  );
+
+  const renderHeaderComponent = () => {
+    switch (headerType) {
+      case HEADER_TYPES.DEFAULT:
+        return renderDefault();
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <Paper
+      sx={{
+        display: "flex",
+        height: 96,
+        alignItems: "center",
+        justifyContent: "space-between",
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2),
+        borderTopRightRadius: 0,
+        borderTopLeftRadius: 0,
+        backgroundColor:
+          theme.palette.mode === "light" && theme.palette.secondary.main,
+        position: "relative",
+      }}
+    >
+      {renderHeaderComponent()}
+    </Paper>
+  );
 };
 
-const useStyles = makeStyles(theme => ({
-	rootFixed: {
-		flexGrow: 1,
-		position: 'fixed',
-		width: '100vw',
-		height: '10vh',
-		zIndex: 10,
-		boxShadow: '0px 1px 8px #000',
-	},
-	rootHidden: {
-		height: '10vh',
-		flexGrow: 1,
-	},
-	logoName: {
-		padding: '12px 24px',
-		textAlign: 'center',
-		fontSize: 36,
-		margin: 0,
-		display: 'block',
-		color: theme.palette.header.contrast,
-	},
-	bar: {
-		backgroundColor: theme.palette.header.main,
-		height: '100%',
-		// padding: '0px 10vw',
-	},
-	barArrow: {
-		color: theme.palette.header.contrast,
-		borderRadius: 12,
-		height: '84%',
-		'&:hover': {
-			backgroundColor: theme.palette.header.dark,
-		},
-	},
-}));
-
-const propTypes = {};
-
-const defaultProps = {};
-
-Header.propTypes = propTypes;
-Header.defaultProps = defaultProps;
+Header.propTypes = {};
+Header.defaultProps = {};
 
 export default React.memo(Header);

@@ -1,33 +1,79 @@
-import { Container, makeStyles } from '@material-ui/core';
-import React from 'react';
-import { useSelector } from 'react-redux';
-
-import * as selectors from '../../../store/selectors';
-import * as BodyContent from '../constants/BodyContent';
+import React from "react";
+import * as PropTypes from "prop-types";
+import { Box, Button, Paper, Tab, Tabs, useTheme } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import selectors from "../../../store/selectors";
+import BODY_TYPES from "../util/bodyTypes";
+import LoadingBackdrop from "./LoadingBackdrop";
+import actions from "../../../store/actions";
 
 const Body = () => {
-	const bodyContent = useSelector(selectors.getBodyContent);
+  const theme = useTheme();
+  const bodyType = useSelector(selectors.getBodyType);
+  const modal = useSelector(selectors.getModal);
 
-	const classes = useStyles();
+  const dispatch = useDispatch();
 
-	return (
-		<Container className={classes.root}>
-			{BodyContent.component(bodyContent)}
-		</Container>
-	);
+  const handleTabSelected = (event, value) => {
+    dispatch(actions.acSetBodyType(value));
+  };
+
+  const renderTabs = () => (
+    <Tabs value={bodyType} onChange={handleTabSelected}>
+      {Object.keys(BODY_TYPES).map((key) => (
+        <Tab value={key} key={key} label={BODY_TYPES[key].title} />
+      ))}
+    </Tabs>
+  );
+
+  const renderBodyComponent = () => {
+    if (!BODY_TYPES[bodyType]) return null;
+    const Component = BODY_TYPES[bodyType].component;
+    return <Component />;
+  };
+
+  const renderModal = () => null;
+
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        width: `calc(100% - ${theme.spacing(4)})`,
+        height: `calc(100% - 96px - ${theme.spacing(4)})`,
+        maxHeight: `calc(100% - 96px - ${theme.spacing(4)})`,
+        gap: theme.spacing(2),
+        justifyContent: "flex-start",
+        alignItems: "center",
+        margin: theme.spacing(2),
+      }}
+    >
+      {Object.keys(BODY_TYPES).length > 1 && renderTabs()}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          width: "100%",
+          // width: `calc(100% - ${theme.spacing(2)})`,
+          // height: "-webkit-fill-available",
+          // maxHeight: "-webkit-fill-available",
+          maxHeight: `calc(100% - ${theme.spacing(8)})`,
+          flexShrink: 1,
+          // height: `calc(100% - ${theme.spacing(4)})`,
+          gap: theme.spacing(2),
+          justifyContent: "center",
+          alignItems: "start",
+        }}
+      >
+        {renderBodyComponent()}
+      </Box>
+      <LoadingBackdrop />
+      {modal && renderModal()}
+    </Box>
+  );
 };
-const useStyles = makeStyles(theme => ({
-	root: {
-		flexGrow: 1,
-		backgroundColor: theme.palette.bodyBackground.main,
-	},
-}));
 
-const propTypes = {};
-
-const defaultProps = {};
-
-Body.propTypes = propTypes;
-Body.defaultProps = defaultProps;
+Body.propTypes = {};
+Body.defaultProps = {};
 
 export default React.memo(Body);

@@ -10,6 +10,7 @@ const Home = () => {
 
   const renderProject = (project) => (
     <Paper
+      key={project.id}
       elevation={2}
       sx={{
         display: "flex",
@@ -26,7 +27,7 @@ const Home = () => {
         variant="contained"
         sx={{ minWidth: 0, padding: theme.spacing(0.75), borderRadius: "50%" }}
       >
-        <LinkIcon />
+        {project.icon}
       </Button>
       <Button
         href={project.github}

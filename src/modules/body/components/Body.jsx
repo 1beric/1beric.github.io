@@ -1,74 +1,35 @@
 import React from "react";
 import * as PropTypes from "prop-types";
-import { Box, Button, Paper, Tab, Tabs, useTheme } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import selectors from "../../../store/selectors";
-import BODY_TYPES from "../util/bodyTypes";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import LoadingBackdrop from "./LoadingBackdrop";
-import actions from "../../../store/actions";
+import AboutSection from "../../aboutSection/components/AboutSection";
+import ProjectSection from "../../projectSection/components/ProjectSection";
+import Background from "./Background";
+import SkillsSection from "../../skillsSection/components/SkillsSection";
 
 const Body = () => {
   const theme = useTheme();
-  const bodyType = useSelector(selectors.getBodyType);
-  const modal = useSelector(selectors.getModal);
-
-  const dispatch = useDispatch();
-
-  const handleTabSelected = (event, value) => {
-    dispatch(actions.acSetBodyType(value));
-  };
-
-  const renderTabs = () => (
-    <Tabs value={bodyType} onChange={handleTabSelected}>
-      {Object.keys(BODY_TYPES).map((key) => (
-        <Tab value={key} key={key} label={BODY_TYPES[key].title} />
-      ))}
-    </Tabs>
-  );
-
-  const renderBodyComponent = () => {
-    if (!BODY_TYPES[bodyType]) return null;
-    const Component = BODY_TYPES[bodyType].component;
-    return <Component />;
-  };
-
-  const renderModal = () => null;
 
   return (
     <Box
       sx={{
         display: "flex",
+        flex: "1 1 auto",
         flexDirection: "column",
-        width: `calc(100% - ${theme.spacing(4)})`,
-        height: `calc(100% - 96px - ${theme.spacing(4)})`,
-        maxHeight: `calc(100% - 96px - ${theme.spacing(4)})`,
         gap: theme.spacing(2),
         justifyContent: "flex-start",
         alignItems: "center",
-        margin: theme.spacing(2),
+        padding: theme.spacing(4),
+        background: "transparent",
+        zIndex: 1,
+        overflow: "hidden auto",
+        // width: "100%",
       }}
     >
-      {Object.keys(BODY_TYPES).length > 1 && renderTabs()}
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          width: "100%",
-          // width: `calc(100% - ${theme.spacing(2)})`,
-          // height: "-webkit-fill-available",
-          // maxHeight: "-webkit-fill-available",
-          maxHeight: `calc(100% - ${theme.spacing(8)})`,
-          flexShrink: 1,
-          // height: `calc(100% - ${theme.spacing(4)})`,
-          gap: theme.spacing(2),
-          justifyContent: "center",
-          alignItems: "start",
-        }}
-      >
-        {renderBodyComponent()}
-      </Box>
+      <AboutSection />
+      <ProjectSection />
+      <SkillsSection />
       <LoadingBackdrop />
-      {modal && renderModal()}
     </Box>
   );
 };

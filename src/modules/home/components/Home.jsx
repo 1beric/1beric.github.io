@@ -1,9 +1,9 @@
 import React from "react";
 import * as PropTypes from "prop-types";
 import { Paper, Typography, Box, Button, useTheme } from "@mui/material";
-import projects from "../util/projects";
 import CodeIcon from "@mui/icons-material/Code";
 import LinkIcon from "@mui/icons-material/Link";
+import projects from "../../body/util/projects";
 
 const Home = () => {
   const theme = useTheme();

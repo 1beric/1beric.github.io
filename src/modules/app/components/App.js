@@ -6,17 +6,21 @@ import selectors from "../../../store/selectors";
 import themes from "../../../util/theme";
 import Body from "../../body/components/Body";
 import Header from "../../header/components/Header";
+import Background from "../../body/components/Background";
 
 const AppBase = () => {
   return (
     <Paper
       elevation={0}
+      square
       sx={{
+        display: "flex",
+        flexDirection: "column",
         width: "100vw",
         height: "100vh",
-        borderRadius: 0,
       }}
     >
+      <Background />
       <Header />
       <Body />
     </Paper>

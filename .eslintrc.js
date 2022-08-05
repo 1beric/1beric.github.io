@@ -12,11 +12,11 @@ module.exports = {
     "airbnb",
     "airbnb/hooks",
     "prettier",
-    "prettier/react"
+    "prettier/react",
   ],
   rules: {
-    'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx'] }],
-    'react/jsx-props-no-spreading': ['off'],
-    'object-shorthand': ['warn', 'never'],
+    "react/jsx-filename-extension": ["warn", { extensions: [".js", ".jsx"] }],
+    "react/jsx-props-no-spreading": ["off"],
+    "object-shorthand": ["warn", "never"],
   },
 };
